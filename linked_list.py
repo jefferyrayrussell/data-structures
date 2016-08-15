@@ -12,9 +12,17 @@ class LinkedList(object):
     """ """
     def __init__(self, value):
         self.length = 0
+        self.header = Node(None)
 
-        self.set_init_list(*value)
+    def push(self, value):
+        temp_node = self.header
+        new_node = Node(value)
+        self.header = new_node
+        temp_node.pointer = new_node
 
-    def set_init_list(self, *values):
-        for value in values:
-            self.length += 1
+
+    #     self.set_init_list(*value)
+
+    # def set_init_list(self, *values):
+    #     for value in values:
+    #         self.length += 1
