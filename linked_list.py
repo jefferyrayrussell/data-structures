@@ -14,10 +14,17 @@ class LinkedList(object):
         self.length = 0
         self.header = None
 
+    def __len__(self):
+        return self.length
+
     def push(self, value):
         temp_node = self.header
         new_node = Node(value, temp_node)
         self.header = new_node
+        self.length += 1
+
+    def size(self):
+        return len(self)
 
 
     #     self.set_init_list(*value)
