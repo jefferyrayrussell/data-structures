@@ -3,22 +3,21 @@
 
 class Node(object):
     """ """
-    def __init__(self, value):
+    def __init__(self, value, pointer=None):
         self.value = value
-        self.pointer = None
+        self.pointer = pointer
 
 
 class LinkedList(object):
     """ """
-    def __init__(self, value):
+    def __init__(self):
         self.length = 0
-        self.header = Node(None)
+        self.header = None
 
     def push(self, value):
         temp_node = self.header
-        new_node = Node(value)
+        new_node = Node(value, temp_node)
         self.header = new_node
-        temp_node.pointer = new_node
 
 
     #     self.set_init_list(*value)
