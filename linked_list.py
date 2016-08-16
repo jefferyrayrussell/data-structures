@@ -41,7 +41,30 @@ class LinkedList(object):
             return_str += '{0}{1}'.format(current_node.value, ')')
         return return_str
 
+    def search(self, val):
+        current_node = self.header
+        while current_node.pointer:
+            if current_node.value == val:
+                return current_node
+            current_node = current_node.pointer
+        else:
+            if current_node.value == val:
+                return current_node
 
+
+    def remove(self, remove_node):
+        if self.header == remove_node:
+            self.header = remove_node.pointer
+            self.length -= 1
+            return
+        current_node = self.header
+        while current_node.pointer:
+            if current_node.pointer == remove_node:
+                current_node.pointer = current_node.pointer.pointer
+                self.length -= 1
+                return
+
+            current_node = current_node.pointer
 
     #     self.set_init_list(*value)
 
