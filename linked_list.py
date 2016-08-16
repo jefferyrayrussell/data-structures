@@ -26,6 +26,12 @@ class LinkedList(object):
     def size(self):
         return len(self)
 
+    def pop(self):
+        pop_node = self.header
+        self.header = pop_node.pointer
+        return pop_node.value
+        
+
 
     #     self.set_init_list(*value)
 
