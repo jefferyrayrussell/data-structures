@@ -30,7 +30,17 @@ class LinkedList(object):
         pop_node = self.header
         self.header = pop_node.pointer
         return pop_node.value
-        
+
+    def display(self):
+        current_node = self.header
+        return_str = '('
+        while current_node.pointer:
+            return_str += '{0}{1}'.format(current_node.value, ', ')
+            current_node = current_node.pointer
+        else:
+            return_str += '{0}{1}'.format(current_node.value, ')')
+        return return_str
+
 
 
     #     self.set_init_list(*value)
