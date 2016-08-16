@@ -10,9 +10,15 @@ class Node(object):
 
 class LinkedList(object):
     """ """
-    def __init__(self):
+    def __init__(self, value_list=None):
         self.length = 0
         self.header = None
+        if hasattr(value_list, '__iter__'):
+            for value in value_list:
+                self.push(value)
+        elif value_list:
+            self.push(value_list)
+
 
     def __len__(self):
         return self.length
@@ -29,16 +35,17 @@ class LinkedList(object):
     def pop(self):
         pop_node = self.header
         self.header = pop_node.pointer
+        self.length -= 1
         return pop_node.value
 
     def display(self):
         current_node = self.header
-        return_str = '('
+        return_str = u'('
         while current_node.pointer:
-            return_str += '{0}{1}'.format(current_node.value, ', ')
+            return_str += u'{0}{1}'.format(current_node.value, ', ')
             current_node = current_node.pointer
         else:
-            return_str += '{0}{1}'.format(current_node.value, ')')
+            return_str += u'{0}{1}'.format(current_node.value, ')')
         return return_str
 
     def search(self, val):
@@ -63,11 +70,4 @@ class LinkedList(object):
                 current_node.pointer = current_node.pointer.pointer
                 self.length -= 1
                 return
-
             current_node = current_node.pointer
-
-    #     self.set_init_list(*value)
-
-    # def set_init_list(self, *values):
-    #     for value in values:
-    #         self.length += 1
