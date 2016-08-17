@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
+"""Create a singly linked list."""
+from __future__ import unicode_literals
 
 
 class Node(object):
+    """Create a node to store data."""
+
     def __init__(self, value, pointer=None):
         """Create an instance of a Node."""
         self.value = value
@@ -9,6 +13,8 @@ class Node(object):
 
 
 class LinkedList(object):
+    """Create a link list class to store strings of data."""
+
     def __init__(self, value_list=None):
         """Create an instance of a singly-linked list."""
         self.length = 0
@@ -46,21 +52,13 @@ class LinkedList(object):
         """Return a unicode string representing the list."""
         if self.length:
             current_node = self.header
-            return_str = u'('
+            return_str = '('
             while current_node.pointer:
                 my_value = current_node.value
-                # try:
-                #     my_value = current_node.value.decode('utf-8')
-                # except AttributeError:
-                #     pass
-                return_str += u'{0}{1}'.format(my_value, ', ')
+                return_str += '{0}{1}'.format(my_value, ', ')
                 current_node = current_node.pointer
             else:
                 my_value = current_node.value
-                # try:
-                #     my_value = current_node.value.decode('utf-8')
-                # except AttributeError:
-                #     pass
                 return_str += u'{0}{1}'.format(my_value, ')')
             return return_str
 
