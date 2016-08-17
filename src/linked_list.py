@@ -48,10 +48,20 @@ class LinkedList(object):
             current_node = self.header
             return_str = u'('
             while current_node.pointer:
-                return_str += u'{0}{1}'.format(current_node.value, ', ')
+                my_value = current_node.value
+                # try:
+                #     my_value = current_node.value.decode('utf-8')
+                # except AttributeError:
+                #     pass
+                return_str += u'{0}{1}'.format(my_value, ', ')
                 current_node = current_node.pointer
             else:
-                return_str += u'{0}{1}'.format(current_node.value, ')')
+                my_value = current_node.value
+                # try:
+                #     my_value = current_node.value.decode('utf-8')
+                # except AttributeError:
+                #     pass
+                return_str += u'{0}{1}'.format(my_value, ')')
             return return_str
 
     def search(self, val):
