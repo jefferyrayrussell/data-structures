@@ -24,7 +24,26 @@ TABLE_LENGTHS = [
 ]
 
 
-LONG_LIST = [('a b c ' * 10000).split()]
+LONG_LIST = ('a b c ' * 10000).split()
+
+SEARCH_TABLE = [
+    (['a'], 'a', True),
+    (['1'], '1', True),
+    ([], '1', False),
+    ([1, 2, 3], 1, True),
+    ([1, 2, 3], '1', False),
+    ([1, 2, 3], 4, False),
+    ([[1, 2], 3], 1, False),
+    ([[1, 2], 3], [1, 2], True),
+    ([1, 2, 3], None, False),
+    ([1, 2, 3, 2], 2, True),
+    ([1] + LONG_LIST, 1, True),
+    (LONG_LIST + [1], 1, True),
+    (TYPE_TABLE, b'1234', True),
+    (TYPE_TABLE, 'āĕĳœ', True),
+    (TYPE_TABLE, '12345\t', True),
+    (TYPE_TABLE, (1, 2, 3), True),
+]
 
 # Node Tests
 
@@ -112,13 +131,13 @@ def test_pop_empty():
     assert test_list.pop() is None
 
 
-
 @pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
 def test_pop_length(init_list, result):
     """Test length is correct after a pop. If pop a zero length list, should still be 0."""
     test_list = LinkedList(init_list)
     test_list.pop()
     assert test_list.size() == max(0, len(init_list) - 1)
+
 
 @pytest.mark.parametrize('init_value', TYPE_TABLE)
 def test_display(init_value):
@@ -142,5 +161,14 @@ def test_size(init_list, result):
     assert test_list.size() == len(init_list)
 
 
+def test_size_xl():
+    """Test init and size on an xl list."""
+    test_list = LinkedList(LONG_LIST)
+    assert test_list.size() == 30000
 
 
+@pytest.mark.parametrize('init_list, search_val, result', SEARCH_TABLE)
+def test_search(init_list, search_val, result):
+    """Test display function on longer strings."""
+    test_list = LinkedList(init_list)
+    assert bool(test_list.search(search_val)) is result
