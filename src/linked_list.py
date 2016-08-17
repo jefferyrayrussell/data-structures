@@ -36,21 +36,23 @@ class LinkedList(object):
 
     def pop(self):
         """Remove the first value off the head of the list and return it."""
-        pop_node = self.header
-        self.header = pop_node.pointer
-        self.length -= 1
-        return pop_node.value
+        if self.length:
+            pop_node = self.header
+            self.header = pop_node.pointer
+            self.length -= 1
+            return pop_node.value
 
     def display(self):
         """Return a unicode string representing the list."""
-        current_node = self.header
-        return_str = u'('
-        while current_node.pointer:
-            return_str += u'{0}{1}'.format(current_node.value, ', ')
-            current_node = current_node.pointer
-        else:
-            return_str += u'{0}{1}'.format(current_node.value, ')')
-        return return_str
+        if self.length:
+            current_node = self.header
+            return_str = u'('
+            while current_node.pointer:
+                return_str += u'{0}{1}'.format(current_node.value, ', ')
+                current_node = current_node.pointer
+            else:
+                return_str += u'{0}{1}'.format(current_node.value, ')')
+            return return_str
 
     def search(self, val):
         """Return the node containing a 'val' in the list."""
