@@ -14,7 +14,7 @@ class DNode(object):
 
 
 class DList(object):
-    """Create a link list class to store strings of data."""
+    """Create a doubly-linked list class to store strings of data."""
 
     def __init__(self, value_list=None):
         """Create an instance of a doubly-linked list."""

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""Tests for linked_list.py."""
 from __future__ import unicode_literals
 
 import pytest
@@ -18,7 +19,7 @@ TYPE_TABLE = [
 
 TABLE_LENGTHS = [
     (['a'], "(a)"),
-    (['a','b'], "(b, a)"),
+    (['a', ' b'], "(b, a)"),
     (['a', 'b', 'c'], "(c, b, a)"),
     (('a b c ' * 5).split(), "(c, b, a, c, b, a, c, b, a, c, b, a, c, b, a)"),
     ([], None)
@@ -47,6 +48,7 @@ SEARCH_TABLE = [
 ]
 
 # Node Tests
+
 
 @pytest.mark.parametrize('init_value', TYPE_TABLE)
 def test_node_init_value(init_value):
