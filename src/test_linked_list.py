@@ -19,7 +19,7 @@ TYPE_TABLE = [
 
 TABLE_LENGTHS = [
     (['a'], "(a)"),
-    (['a', ' b'], "(b, a)"),
+    (['a', 'b'], "(b, a)"),
     (['a', 'b', 'c'], "(c, b, a)"),
     (('a b c ' * 5).split(), "(c, b, a, c, b, a, c, b, a, c, b, a, c, b, a)"),
     ([], None)

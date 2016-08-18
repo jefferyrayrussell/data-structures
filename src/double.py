@@ -21,11 +21,11 @@ class DList(object):
         self.length = 0
         self.head = None
         self.tail = None
-        # if hasattr(value_list, '__iter__'):
-        #     for value in value_list:
-        #         self.push(value)
-        # elif value_list:
-        #     self.push(value_list)
+        if hasattr(value_list, '__iter__'):
+            for value in value_list:
+                self.push(value)
+        elif value_list:
+            self.push(value_list)
 
     def __len__(self):
         """Return the length of the linked list for the built in len."""
@@ -43,7 +43,7 @@ class DList(object):
 
     def append(self, value):
         """Add a new node to the head of the linked list."""
-        new_node = DNode(value, self.head)
+        new_node = DNode(value, prev_node=self.tail)
         if self.tail:
             self.tail.next_node = new_node
         else:
@@ -59,18 +59,18 @@ class DList(object):
         """Remove the first value off the head of the list and return it."""
         if self.length:
             pop_node = self.head
-            self.head = pop_node.next_node
             self.length -= 1
             self.head.prev_node = None
+            self.head = pop_node.next_node
             return pop_node.value
 
     def shift(self):
         """Remove the first value off the head of the list and return it."""
         if self.length:
             shift_node = self.tail
-            self.tail = shift_node.prev_node
             self.length -= 1
             self.tail.next_node = None
+            self.tail = shift_node.prev_node
             return shift_node.value
 
     def display(self):
@@ -106,14 +106,9 @@ class DList(object):
         if self.tail == remove_node:
             self.shift()
             return
-        current_node = self.head
-        while current_node.next_node:
-            if current_node.next_node == remove_node:
-                current_node.next_node = current_node.next_node.next_node
-                current_node.next_node.prev_node = current_node
-                self.length -= 1
-                return
-            current_node = current_node.pointer
+        remove_node.prev_node.next_node = remove_node.next_node
+        remove_node.next_mode.prev_node = remove_node.prev_node
+        self.length -= 1
 
     def remove(self, value):
         self.remove_node(self.search(value))
