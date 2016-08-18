@@ -226,8 +226,12 @@ def test_size_xl():
     assert test_list.size() == 30000
 
 
-@pytest.mark.parametrize('init_list, search_val, result', SEARCH_TABLE)
-def test_search(init_list, search_val, result):
+@pytest.mark.parametrize('init_list, search_val, val_is_expected', SEARCH_TABLE)
+def test_search(init_list, search_val, val_is_expected):
     """Test display function on longer strings."""
     test_list = DList(init_list)
-    assert bool(test_list.search(search_val)) is result
+    if val_is_expected:
+        assert test_list.search(search_val).value == search_val
+    else:
+        with pytest.raises(IndexError):
+            test_list.search(search_val)

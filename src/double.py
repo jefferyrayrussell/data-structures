@@ -94,7 +94,7 @@ class DList(object):
                     return current_node
                 current_node = current_node.next_node
             else:
-                if current_node.next_node == val:
+                if current_node.value == val:
                     return current_node
         raise IndexError('Value not in list.')
 
