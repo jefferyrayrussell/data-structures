@@ -235,3 +235,13 @@ def test_search(init_list, search_val, val_is_expected):
     else:
         with pytest.raises(IndexError):
             test_list.search(search_val)
+
+
+# New Tests
+
+@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
+def test_remove_node_length(init_list, result):
+    """Test length is correct after a remove."""
+    test_list = DList(init_list)
+    test_list.remove_node()
+    assert test_list.length == max(0, len(init_list) - 1)

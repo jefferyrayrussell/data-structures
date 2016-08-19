@@ -42,7 +42,7 @@ class DList(object):
         self.length += 1
 
     def append(self, value):
-        """Add a new node to the head of the linked list."""
+        """Add a new node to the tail of the linked list."""
         new_node = DNode(value, prev_node=self.tail)
         if self.tail:
             self.tail.next_node = new_node
@@ -107,7 +107,7 @@ class DList(object):
             self.shift()
             return
         remove_node.prev_node.next_node = remove_node.next_node
-        remove_node.next_mode.prev_node = remove_node.prev_node
+        remove_node.next_node.prev_node = remove_node.prev_node
         self.length -= 1
 
     def remove(self, value):
