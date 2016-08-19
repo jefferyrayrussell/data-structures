@@ -87,7 +87,7 @@ def test_dnode_pointer(init_value):
     second_node = DNode(init_value, prev_node=test_dnode)
     assert second_node.prev_node == test_dnode
 
-# DList Test
+# DList Tests
 
 
 def test_empty_list_length():

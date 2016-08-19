@@ -17,7 +17,7 @@ class Queue(object):
         """Add value to the top of  the queue."""
         return self._dlist.push(value)
 
-    def denqueue(self, value): 
+    def dequeue(self, value): 
         """From the bottom of the queue, remove and return value."""
          self._dlist.shift(value)
         return  self
@@ -32,6 +32,13 @@ class Queue(object):
             return None
         else:
             return self._dlist.next_node.value
+
+    # OR????
+
+        try:
+            return self._dlist.tail_node.value
+        except AttributeError:
+            return None
 
 
     def size(self, value): 
