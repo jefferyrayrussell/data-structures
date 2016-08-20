@@ -2,8 +2,8 @@
 from setuptools import setup
 
 setup(
-    name="linked_list",
-    description="Linked list data structure.",
+    name="data_structures",
+    description="Classic data structures.",
     version='0.1.0',
     author="Zach Rickert, Jeffery Ray Russell",
     author_email="zachrickert@gmail.com",
