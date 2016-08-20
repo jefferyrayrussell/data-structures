@@ -32,8 +32,7 @@ class LinkedList(object):
 
     def push(self, value):
         """Add a new node to the head of the linked list."""
-        temp_node = self.header
-        new_node = Node(value, temp_node)
+        new_node = Node(value, self.header)
         self.header = new_node
         self.length += 1
 
@@ -48,6 +47,8 @@ class LinkedList(object):
             self.header = pop_node.pointer
             self.length -= 1
             return pop_node.value
+        else:
+            raise IndexError('Cannot pop from an empty list.')
 
     def display(self):
         """Return a unicode string representing the list."""

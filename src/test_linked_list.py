@@ -129,15 +129,21 @@ def test_pop(init_value):
 def test_pop_empty():
     """Test that popping an empty string returns None."""
     test_list = LinkedList()
-    assert test_list.pop() is None
+    with pytest.raises(IndexError):
+        test_list.pop()
 
 
 @pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
 def test_pop_length(init_list, result):
-    """Test length is correct after a pop. If pop a zero length list, should still be 0."""
+    """Test length is correct after a pop."""
     test_list = LinkedList(init_list)
-    test_list.pop()
-    assert test_list.size() == max(0, len(init_list) - 1)
+    if len(init_list) > 0:
+        test_list.pop()
+        assert test_list.size() == len(init_list) - 1
+    else:
+        with pytest.raises(IndexError):
+            test_list.pop()
+        
 
 
 @pytest.mark.parametrize('init_value', TYPE_TABLE)
