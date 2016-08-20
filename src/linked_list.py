@@ -66,21 +66,17 @@ class LinkedList(object):
     def search(self, val):
         """Return the node containing a 'val' in the list."""
         if self.length:
+            if self.header.value == val:
+                return self.header
+
             current_node = self.header
             while current_node.pointer:
-                if current_node.value == val:
-                    return current_node
+                if current_node.pointer.value == val:
+                    return current_node.pointer
                 current_node = current_node.pointer
-            else:
-                if current_node.value == val:
-                    return current_node
 
     def remove(self, remove_node):
         """Remove the given node from the list."""
-        if self.header == remove_node:
-            self.header = remove_node.pointer
-            self.length -= 1
-            return
         current_node = self.header
         while current_node.pointer:
             if current_node.pointer == remove_node:

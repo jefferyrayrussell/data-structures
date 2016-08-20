@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+"""Class implimentation of a singly linked list."""
 from __future__ import unicode_literals
 
 import pytest
@@ -18,7 +19,7 @@ TYPE_TABLE = [
 
 TABLE_LENGTHS = [
     (['a'], "(a)"),
-    (['a','b'], "(b, a)"),
+    (['a', 'b'], "(b, a)"),
     (['a', 'b', 'c'], "(c, b, a)"),
     (('a b c ' * 5).split(), "(c, b, a, c, b, a, c, b, a, c, b, a, c, b, a)"),
     ([], None)
@@ -48,6 +49,7 @@ SEARCH_TABLE = [
 
 # Node Tests
 
+
 @pytest.mark.parametrize('init_value', TYPE_TABLE)
 def test_node_init_value(init_value):
     """Test that the values initialize correctly."""
@@ -55,18 +57,16 @@ def test_node_init_value(init_value):
     assert test_node.value == init_value
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_node_init_pointer(init_value):
+def test_node_init_pointer():
     """Test that the pointer initializes correctly."""
-    test_node = Node(init_value)
+    test_node = Node('test')
     assert test_node.pointer is None
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_node_pointer(init_value):
+def test_node_pointer():
     """Test that the node pointer returns the correct node."""
-    test_node = Node(init_value)
-    second_node = Node(init_value, test_node)
+    test_node = Node('init_node')
+    second_node = Node('second_node', test_node)
     assert second_node.pointer == test_node
 
 # List Test
@@ -76,6 +76,20 @@ def test_empty_list_length():
     """Test to see if any empty string has length zero."""
     empty_list = LinkedList()
     assert empty_list.length == 0
+
+
+@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
+def test_length(init_list, result):
+    """Test the size function on strings of different lengths."""
+    test_list = LinkedList(init_list)
+    assert test_list.length == len(init_list)
+
+
+@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
+def test_size(init_list, result):
+    """Test the size function on strings of different lengths."""
+    test_list = LinkedList(init_list)
+    assert test_list.size() == len(init_list)
 
 
 def test_empty_list_pointer():
@@ -92,30 +106,27 @@ def test_list_push_empty(init_value):
     assert test_list.header.value == init_value
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_list_push_head_value(init_value):
+def test_list_push_head_value():
     """Test push on a non-empty list. Make sure pushing to head."""
     test_list = LinkedList()
-    test_list.push('test_string')
-    test_list.push(init_value)
-    assert test_list.header.value == init_value
+    test_list.push('initial_node')
+    test_list.push('second_node')
+    assert test_list.header.value == 'second_node'
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_list_push_pointer(init_value):
+def test_list_push_pointer():
     """Test push on a non-empty list. Make sure that pointer is initializing correctly."""
     test_list = LinkedList()
-    test_list.push('test_string')
-    test_list.push(init_value)
-    assert test_list.header.pointer.value == 'test_string'
+    test_list.push('initial_node')
+    test_list.push('second_node')
+    assert test_list.header.pointer.value == 'initial_node'
 
 
-@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
-def test_push_length(init_list, result):
+def test_push_length():
     """Test length is correct after a push."""
-    test_list = LinkedList(init_list)
-    test_list.push('some_string')
-    assert test_list.size() == len(init_list) + 1
+    test_list = LinkedList(['a', 'b'])
+    test_list.push('c')
+    assert test_list.size() == 3
 
 
 @pytest.mark.parametrize('init_value', TYPE_TABLE)
@@ -133,17 +144,11 @@ def test_pop_empty():
         test_list.pop()
 
 
-@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
-def test_pop_length(init_list, result):
+def test_pop_length():
     """Test length is correct after a pop."""
-    test_list = LinkedList(init_list)
-    if len(init_list) > 0:
-        test_list.pop()
-        assert test_list.size() == len(init_list) - 1
-    else:
-        with pytest.raises(IndexError):
-            test_list.pop()
-        
+    test_list = LinkedList(['a', 'b'])
+    test_list.pop()
+    assert test_list.size() == 1
 
 
 @pytest.mark.parametrize('init_value', TYPE_TABLE)
@@ -151,7 +156,7 @@ def test_display(init_value):
     """Test display function."""
     test_list = LinkedList()
     test_list.push(init_value)
-    assert test_list.display() == '{0}{1}{2}'.format('(', init_value, ')')
+    assert test_list.display() == '({0})'.format(init_value)
 
 
 @pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
@@ -159,13 +164,6 @@ def test_display_long(init_list, result):
     """Test display function on longer strings."""
     test_list = LinkedList(init_list)
     assert test_list.display() == result
-
-
-@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
-def test_size(init_list, result):
-    """Test display function on longer strings."""
-    test_list = LinkedList(init_list)
-    assert test_list.size() == len(init_list)
 
 
 def test_size_xl():
