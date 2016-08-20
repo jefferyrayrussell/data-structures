@@ -53,15 +53,14 @@ class LinkedList(object):
     def display(self):
         """Return a unicode string representing the list."""
         if self.length:
+            return_str = '{0}{1}{2}'.format('(', self.header.value, ', ')
             current_node = self.header
-            return_str = '('
             while current_node.pointer:
-                my_value = current_node.value
+                my_value = current_node.pointer.value
                 return_str += '{0}{1}'.format(my_value, ', ')
                 current_node = current_node.pointer
             else:
-                my_value = current_node.value
-                return_str += u'{0}{1}'.format(my_value, ')')
+                return_str = return_str.rstrip(', ') + ')'
             return return_str
 
     def search(self, val):
