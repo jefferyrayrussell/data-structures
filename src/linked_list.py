@@ -19,11 +19,12 @@ class LinkedList(object):
         """Create an instance of a singly-linked list."""
         self.length = 0
         self.header = None
-        if hasattr(value_list, '__iter__'):
+        try:
             for value in value_list:
                 self.push(value)
-        elif value_list:
-            self.push(value_list)
+        except TypeError:
+            if value_list is not None:
+                raise TypeError('Your input is not an itterable object.')
 
     def __len__(self):
         """Return the length of the linked list for the built in len."""
@@ -31,8 +32,7 @@ class LinkedList(object):
 
     def push(self, value):
         """Add a new node to the head of the linked list."""
-        temp_node = self.header
-        new_node = Node(value, temp_node)
+        new_node = Node(value, self.header)
         self.header = new_node
         self.length += 1
 
@@ -47,39 +47,36 @@ class LinkedList(object):
             self.header = pop_node.pointer
             self.length -= 1
             return pop_node.value
+        else:
+            raise IndexError('Cannot pop from an empty list.')
 
     def display(self):
         """Return a unicode string representing the list."""
         if self.length:
+            return_str = '{0}{1}{2}'.format('(', self.header.value, ', ')
             current_node = self.header
-            return_str = '('
             while current_node.pointer:
-                my_value = current_node.value
+                my_value = current_node.pointer.value
                 return_str += '{0}{1}'.format(my_value, ', ')
                 current_node = current_node.pointer
             else:
-                my_value = current_node.value
-                return_str += u'{0}{1}'.format(my_value, ')')
+                return_str = return_str.rstrip(', ') + ')'
             return return_str
 
     def search(self, val):
         """Return the node containing a 'val' in the list."""
         if self.length:
+            if self.header.value == val:
+                return self.header
+
             current_node = self.header
             while current_node.pointer:
-                if current_node.value == val:
-                    return current_node
+                if current_node.pointer.value == val:
+                    return current_node.pointer
                 current_node = current_node.pointer
-            else:
-                if current_node.value == val:
-                    return current_node
 
     def remove(self, remove_node):
         """Remove the given node from the list."""
-        if self.header == remove_node:
-            self.header = remove_node.pointer
-            self.length -= 1
-            return
         current_node = self.header
         while current_node.pointer:
             if current_node.pointer == remove_node:
