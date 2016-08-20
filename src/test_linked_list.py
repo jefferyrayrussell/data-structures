@@ -5,13 +5,13 @@ import pytest
 from linked_list import Node, LinkedList
 
 TYPE_TABLE = [
-    '1',
-    1,
-    '-' * 10000,
-    'āĕĳœ',
-    '',
-    b'1234',
-    '12345\t',
+    ['1'],
+    [1],
+    ['-'] * 10000,
+    ['āĕĳœ'],
+    [],
+    [b'1234'],
+    ['12345\t'],
     [1, 2, 3],
     (1, 2, 3)
 ]
@@ -40,9 +40,9 @@ SEARCH_TABLE = [
     ([1, 2, 3, 2], 2, True),
     ([1] + LONG_LIST, 1, True),
     (LONG_LIST + [1], 1, True),
-    (TYPE_TABLE, b'1234', True),
-    (TYPE_TABLE, 'āĕĳœ', True),
-    (TYPE_TABLE, '12345\t', True),
+    (TYPE_TABLE, [b'1234'], True),
+    (TYPE_TABLE, ['āĕĳœ'], True),
+    (TYPE_TABLE, ['12345\t'], True),
     (TYPE_TABLE, (1, 2, 3), True),
 ]
 

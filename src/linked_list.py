@@ -19,11 +19,12 @@ class LinkedList(object):
         """Create an instance of a singly-linked list."""
         self.length = 0
         self.header = None
-        if hasattr(value_list, '__iter__'):
+        try:
             for value in value_list:
                 self.push(value)
-        elif value_list:
-            self.push(value_list)
+        except TypeError:
+            if value_list is not None:
+                raise TypeError('Your input is not an itterable object.')
 
     def __len__(self):
         """Return the length of the linked list for the built in len."""
