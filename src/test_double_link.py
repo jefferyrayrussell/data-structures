@@ -116,54 +116,54 @@ def test_list_append_tail_value(init_value):
     assert test_list.tail.value == init_value
 
 
-# @pytest.mark.parametrize('init_value', TYPE_TABLE)
-# def test_list_push_next(init_value):
-#     """Test push on a non-empty list. Make sure that head is initializing correctly."""
-#     test_list = DList()
-#     test_list.push('test_string')
-#     test_list.push(init_value)
-#     assert test_list.head.next_node.value == 'test_string'
+@pytest.mark.parametrize('init_value', TYPE_TABLE)
+def test_list_push_next(init_value):
+    """Test push on a non-empty list. Make sure that head is initializing correctly."""
+    test_list = DList()
+    test_list.push('test_string')
+    test_list.push(init_value)
+    assert test_list.head.next_node.value == 'test_string'
 
 
-# @pytest.mark.parametrize('init_value', TYPE_TABLE)
-# def test_list_append_prev(init_value):
-#     """Test append on a non-empty list. Make sure that tail is initializing correctly."""
-#     test_list = DList()
-#     test_list.append('test_string')
-#     test_list.append(init_value)
-#     assert test_list.tail.prev_node.value == 'test_string'
+@pytest.mark.parametrize('init_value', TYPE_TABLE)
+def test_list_append_prev(init_value):
+    """Test append on a non-empty list. Make sure that tail is initializing correctly."""
+    test_list = DList()
+    test_list.append('test_string')
+    test_list.append(init_value)
+    assert test_list.tail.prev_node.value == 'test_string'
 
 
-# @pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
-# def test_push_length(init_list, result):
-#     """Test length is correct after a push."""
-#     test_list = DList(init_list)
-#     test_list.push('some_string')
-#     assert test_list.length == len(init_list) + 1
+@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
+def test_push_length(init_list, result):
+    """Test length is correct after a push."""
+    test_list = DList(init_list)
+    test_list.push('some_string')
+    assert test_list.length == len(init_list) + 1
 
 
-# @pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
-# def test_append_length(init_list, result):
-#     """Test length is correct after an apend."""
-#     test_list = DList(init_list)
-#     test_list.append('some_string')
-#     assert test_list.length == len(init_list) + 1
+@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
+def test_append_length(init_list, result):
+    """Test length is correct after an apend."""
+    test_list = DList(init_list)
+    test_list.append('some_string')
+    assert test_list.length == len(init_list) + 1
 
 
-# @pytest.mark.parametrize('init_value', TYPE_TABLE)
-# def test_pop(init_value):
-#     """Test pop returns correct value."""
-#     test_list = DList()
-#     test_list.push(init_value)
-#     assert test_list.pop() == init_value
+@pytest.mark.parametrize('init_value', TYPE_TABLE)
+def test_pop(init_value):
+    """Test pop returns correct value."""
+    test_list = DList()
+    test_list.push(init_value)
+    assert test_list.pop() == init_value
 
 
-# @pytest.mark.parametrize('init_value', TYPE_TABLE)
-# def test_shift(init_value):
-#     """Test shift returns correct value."""
-#     test_list = DList()
-#     test_list.append(init_value)
-#     assert test_list.shift() == init_value
+@pytest.mark.parametrize('init_value', TYPE_TABLE)
+def test_shift(init_value):
+    """Test shift returns correct value."""
+    test_list = DList()
+    test_list.append(init_value)
+    assert test_list.shift() == init_value
 
 
 # def test_pop_empty():
@@ -222,8 +222,8 @@ def test_list_append_tail_value(init_value):
 #     assert test_list.length == 30000
 
 
-# # @pytest.mark.parametrize('init_list, search_val, result', SEARCH_TABLE)
-# # def test_search(init_list, search_val, result):
-# #     """Test display function on longer strings."""
-# #     test_list = DList(init_list)
-# #     assert bool(test_list.search(search_val)) is result
+# @pytest.mark.parametrize('init_list, search_val, result', SEARCH_TABLE)
+# def test_search(init_list, search_val, result):
+#     """Test display function on longer strings."""
+#     test_list = DList(init_list)
+#     assert bool(test_list.search(search_val)) is result

@@ -21,11 +21,11 @@ class DList(object):
         self.length = 0
         self.head = None
         self.tail = None
-        # if hasattr(value_list, '__iter__'):
-        #     for value in value_list:
-        #         self.push(value)
-        # elif value_list:
-        #     self.push(value_list)
+        if hasattr(value_list, '__iter__'):
+            for value in value_list:
+                self.push(value)
+        elif value_list:
+            self.push(value_list)
 
     def __len__(self):
         """Return the length of the linked list for the built in len."""
