@@ -83,6 +83,7 @@ def test_enqueue_size(init_queue, result):
 
 # Tests for Dequeue
 
+
 def test_dequeue():
     """Test dequeue returns correct value."""
     test_list = Queue(['a', 'b', 'c'])
@@ -102,4 +103,8 @@ def test_dequeue_length(init_list, result):
     test_list.dequeue()
     assert test_list.size() == max(0, len(init_list) - 1)
 
-# Tests for Peek
+
+def test_peak():
+    """Test the peak functionality."""
+    test_list = Queue(['a', 'b', 'c'])
+    assert test_list.peek() == 'a'
