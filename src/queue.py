@@ -17,18 +17,17 @@ class Queue(object):
         """Add value to the top of  the queue."""
         return self._dlist.push(value)
 
-    def dequeue(self, value):
+    def dequeue(self):
         """From the bottom of the queue, remove and return value."""
-        self._dlist.shift(value)
-        return self
+        return self._dlist.shift()
 
-    def peek(self, value):
+    def peek(self):
         """Return the next value in the queue without dequeueing it.  If the queue is empty, returns none."""
         try:
-            return self._dlist.tail_node.value
+            return self._dlist.tail.value
         except AttributeError:
             return None
 
-    def size(self, value):
+    def size(self):
         """Return the size of the queue, 0  if  empty."""
         return self._dlist.__len__()

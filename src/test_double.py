@@ -26,7 +26,6 @@ TABLE_LENGTHS = [
     ([], None)
 ]
 
-
 LONG_LIST = ('a b c ' * 10000).split()
 
 SEARCH_TABLE = [
@@ -58,33 +57,29 @@ def test_dnode_init_value(init_value):
     assert test_dnode.value == init_value
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_dnode_init_next_node(init_value):
+def test_dnode_init_next_node():
     """Test that the next_node pointer initializes correctly."""
-    test_dnode = DNode(init_value)
+    test_dnode = DNode('test')
     assert test_dnode.next_node is None
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_dnode_init_prev_node(init_value):
+def test_dnode_init_prev_node():
     """Test that the prev_node pointer initializes correctly."""
-    test_dnode = DNode(init_value)
+    test_dnode = DNode('test')
     assert test_dnode.prev_node is None
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_dnode_next_node(init_value):
+def test_dnode_next_node():
     """Test that the next node pointer returns the correct node."""
-    test_dnode = DNode(init_value)
-    second_dnode = DNode(init_value, test_dnode)
+    test_dnode = DNode('test')
+    second_dnode = DNode('second_node', test_dnode)
     assert second_dnode.next_node == test_dnode
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_dnode_pointer(init_value):
+def test_dnode_pointer():
     """Test that the previous node pointer returns the correct node."""
-    test_dnode = DNode(init_value)
-    second_node = DNode(init_value, prev_node=test_dnode)
+    test_dnode = DNode('test')
+    second_node = DNode('second_node', prev_node=test_dnode)
     assert second_node.prev_node == test_dnode
 
 # DList Tests
@@ -116,13 +111,12 @@ def test_list_push_empty(init_value):
     assert test_list.head.value == init_value
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_list_push_head_value(init_value):
+def test_list_push_head_value():
     """Test push on a non-empty list. Make sure pushing to head."""
     test_list = DList()
-    test_list.push('test_string')
-    test_list.push(init_value)
-    assert test_list.head.value == init_value
+    test_list.push('first_node')
+    test_list.push('second_node')
+    assert test_list.head.value == 'second_node'
 
 
 @pytest.mark.parametrize('init_value', TYPE_TABLE)
@@ -133,21 +127,19 @@ def test_list_append_empty(init_value):
     assert test_list.tail.value == init_value
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_list_append_tail_value(init_value):
+def test_list_append_tail_value():
     """Test append on a non-empty list. Make sure appending to tail."""
     test_list = DList()
-    test_list.append('test_string')
-    test_list.append(init_value)
-    assert test_list.tail.value == init_value
+    test_list.append('first_node')
+    test_list.append('second_node')
+    assert test_list.tail.value == 'second_node'
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_list_push_next(init_value):
+def test_list_push_next():
     """Test push on a non-empty list. Make sure that next pointer is initializing correctly."""
     test_list = DList()
     test_list.push('test_string')
-    test_list.push(init_value)
+    test_list.push('second_node')
     assert test_list.head.next_node.value == 'test_string'
 
 
@@ -159,21 +151,19 @@ def test_push_length(init_list, result):
     assert test_list.length == len(init_list) + 1
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_list_append_next(init_value):
+def test_list_append_next():
     """Test append on a non-empty list. Make sure that next pointer is initializing correctly."""
     test_list = DList()
     test_list.append('test_string')
-    test_list.append(init_value)
+    test_list.append('second_node')
     assert test_list.tail.prev_node.value == 'test_string'
 
 
-@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
-def test_append_length(init_list, result):
+def test_append_length():
     """Test length is correct after an append."""
-    test_list = DList(init_list)
+    test_list = DList(['a', 'b', 'c'])
     test_list.append('some_string')
-    assert test_list.length == len(init_list) + 1
+    assert test_list.length == 4
 
 
 @pytest.mark.parametrize('init_value', TYPE_TABLE)
@@ -190,12 +180,11 @@ def test_pop_empty():
     assert test_list.pop() is None
 
 
-@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
-def test_pop_length(init_list, result):
+def test_pop_length():
     """Test length is correct after a pop. If pop a zero length list, should still be 0."""
-    test_list = DList(init_list)
+    test_list = DList(['a', 'b', 'c'])
     test_list.pop()
-    assert test_list.length == max(0, len(init_list) - 1)
+    assert test_list.length == 2
 
 
 @pytest.mark.parametrize('init_value', TYPE_TABLE)
@@ -212,12 +201,11 @@ def test_shift_empty():
     assert test_list.shift() is None
 
 
-@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
-def test_shift_length(init_list, result):
+def test_shift_length():
     """Test length is correct after a shift. If shift a zero length list, should still be 0."""
-    test_list = DList(init_list)
+    test_list = DList(['a', 'b', 'c'])
     test_list.shift()
-    assert test_list.length == max(0, len(init_list) - 1)
+    assert test_list.length == 2
 
 
 def test_size_xl():
@@ -237,11 +225,9 @@ def test_search(init_list, search_val, val_is_expected):
             test_list.search(search_val)
 
 
-# New Tests
-
-@pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
-def test_remove_node_length(init_list, result):
+def test_remove_node_length():
     """Test length is correct after a remove."""
-    test_list = DList(init_list)
-    test_list.remove_node()
-    assert test_list.length == max(0, len(init_list) - 1)
+    test_list = DList(['a', 'b', 'c'])
+    node_to_remove = test_list.search('c')
+    test_list.remove_node(node_to_remove)
+    assert test_list.length == 2
