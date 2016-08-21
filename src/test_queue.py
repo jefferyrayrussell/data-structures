@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
-"""Tests for  queue.py."""
+# Tests for queue.py.
 
 from __future__ import unicode_literals
 
 from queue import Queue
+from double import Dlist
 
 import pytest
+
 #from linked_list import Node, LinkedList
 
 TYPE_TABLE = [
@@ -91,17 +93,17 @@ def test_enqueue_size(init_queue, result):
 # Tests for Dequeue
 
 @pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_dequeu.init_value):
+def test_dequeue(init_value):
     """Test dequeue returns correct value."""
     test_list = DList()
     test_list.append(init_value)
-    assert test_list.dequeu) == init_value
+    assert test_list.dequeue == init_value
 
 
 def test_shift_empty():
     """Test that dequeueing an empty string returns None."""
     test_list = DList()
-    assert test_list.dequeu) is None
+    assert test_list.dequeue is None
 
 
 @pytest.mark.parametrize('init_list, result', TABLE_LENGTHS)
@@ -112,6 +114,3 @@ def test_shift_length(init_list, result):
     assert test_list.length == max(0, len(init_list) - 1)
 
 # Tests for Peek
-
-????
-
