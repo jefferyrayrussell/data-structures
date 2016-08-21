@@ -66,8 +66,10 @@ def test_pop(init_value):
 
 def test_pop_empty():
     """Test that popping an empty stack returns None."""
-    test_stack = Stack()
-    assert test_stack.pop() is None
+    test_list = Stack()
+    with pytest.raises(IndexError):
+        test_list.pop()
+
 
 
 @pytest.mark.parametrize('init_stack, result', TABLE_LENGTHS)
