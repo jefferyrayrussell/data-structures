@@ -33,7 +33,7 @@ LONG_STACK = ('a b c ' * 10000).split()
 def test_empty_stack_size():
     """Test to see if any empty stack has length zero."""
     empty_stack = Stack()
-    assert empty_stack.size == 0
+    assert empty_stack.size() == 0
 
 
 def test_empty_stack_pointer():
@@ -42,20 +42,18 @@ def test_empty_stack_pointer():
     assert empty_stack.top is None
 
 
-@pytest.mark.parametrize('init_value', TYPE_TABLE)
-def test_stack_push_empty(init_value):
+def test_stack_push_empty():
     """Test push on an empty stack."""
     test_stack = Stack()
-    test_stack.push(init_value)
-    assert test_stack.top.value == init_value
+    test_stack.push('test_value')
+    assert test_stack.top.value == 'test_value'
 
 
-@pytest.mark.parametrize('init_stack, result', TABLE_LENGTHS)
-def test_push_size(init_stack, result):
+def test_push_size():
     """Test size is correct after a push."""
-    test_stack = Stack(init_stack)
+    test_stack = Stack(['a', 'b'])
     test_stack.push('some_string')
-    assert test_stack.size == len(init_stack) + 1
+    assert test_stack.size() == 3
 
 
 @pytest.mark.parametrize('init_value', TYPE_TABLE)
@@ -73,21 +71,20 @@ def test_pop_empty():
 
 
 @pytest.mark.parametrize('init_stack, result', TABLE_LENGTHS)
-def test_pop_length(init_stack, result):
-    """Test size after a pop in a zero size stack."""
-    test_stack = Stack(init_stack)
-    test_stack.pop()
-    assert test_stack.size == max(0, len(init_stack) - 1)
-
-
-@pytest.mark.parametrize('init_stack, result', TABLE_LENGTHS)
 def test_size(init_stack, result):
-    """Test display function on longer strings."""
+    """Test ."""
     test_stack = Stack(init_stack)
-    assert test_stack.size == len(init_stack)
+    assert test_stack.size() == len(init_stack)
+
+
+def test_pop_length():
+    """Test size after a pop in a zero size stack."""
+    test_stack = Stack(['a', 'b'])
+    test_stack.pop()
+    assert test_stack.size() == 1
 
 
 def test_size_xl():
     """Test init and size on an xl stack."""
     test_stack = Stack(LONG_STACK)
-    assert test_stack.size == 30000
+    assert test_stack.size() == 30000

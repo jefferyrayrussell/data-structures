@@ -43,7 +43,7 @@ class DList(object):
 
     def append(self, value):
         """Add a new node to the tail of the linked list."""
-        new_node = DNode(value, prev_node=self.tail)
+        new_node = DNode(value, prev_node=self.head)
         if self.tail:
             self.tail.next_node = new_node
         else:
