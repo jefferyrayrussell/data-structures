@@ -21,11 +21,12 @@ class DList(object):
         self.length = 0
         self.head = None
         self.tail = None
-        if hasattr(value_list, '__iter__'):
+        try:
             for value in value_list:
                 self.push(value)
-        elif value_list:
-            self.push(value_list)
+        except TypeError:
+            if value_list is not None:
+                raise TypeError('Your input is not an itterable object.')
 
     def __len__(self):
         """Return the length of the linked list for the built in len."""
@@ -59,30 +60,39 @@ class DList(object):
         """Remove the first value off the head of the list and return it."""
         if self.length:
             pop_node = self.head
+            self.head = pop_node.next_node
             self.length -= 1
             self.head.prev_node = None
-            self.head = pop_node.next_node
+            if self.length == 0:
+                self.tail = None
             return pop_node.value
+        else:
+            raise IndexError('Cannot pop from an empty list.')
 
     def shift(self):
-        """Remove the first value off the head of the list and return it."""
+        """Remove the last value off the tail of the list and return it."""
         if self.length:
             shift_node = self.tail
+            self.tail = shift_node.prev_node
             self.length -= 1
             self.tail.next_node = None
-            self.tail = shift_node.prev_node
+            if self.length == 0:
+                self.head = None
             return shift_node.value
+        else:
+            raise IndexError('Cannot shift from an empty list.')
 
     def display(self):
         """Return a unicode string representing the list."""
         if self.length:
             current_node = self.head
-            return_str = '('
-            while current_node != self.tail:
-                return_str += '{0}{1}'.format(current_node.value, ', ')
+            return_str = '({0}, '.format(self.header.value)
+            while current_node.next:
+                my_value = current_node.next_node.value
+                return_str += '{0}{1}'.format(my_value, ', ')
                 current_node = current_node.next_node
             else:
-                return_str += u'{0}{1}'.format(current_node.value, ')')
+                return_str = return_str.rstrip(', ') + ')'
             return return_str
 
     def search(self, val):
