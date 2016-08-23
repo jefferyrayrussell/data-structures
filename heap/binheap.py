@@ -5,17 +5,18 @@ from __future__ import unicode_literals
 class BinNode(object):
     """Create a Node constructor to store data in a binary heap."""
 
-    def __init__(self, value, parent_node=None, child_a_node=None, child_b_node=None):
+    def __init__(self, value, parent=None, child_a=None, child_b=None):
         """Create an instance of a Node in a binary heap."""
         self.value = value
-        self.parent_node = parent_node
-        self.child_a_node = child_a_node
-        self.child_b_node = child_b_node
+        self.parent = parent
+        self.child_a = child_a
+        self.child_b = child_b
+
 
 class BinHeap(object):
     """Create a Binary Heap constructor."""
 
-    def __init__(self, data_list=None)
+    def __init__(self, data_list=None):
         """Create an instance of a Binary Heap."""
         self.length = 0
         self.top = None

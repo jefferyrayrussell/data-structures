@@ -1,11 +1,14 @@
 import pytest
-from binheep import BinNode, BinHeap
+from binheap import BinNode, BinHeap
 
 @pytest.fixture()
 def binnode_empty():
-    """Create an empty binnode"""
-    test_binnode() = BinNode()
+    """Create an empty binnode."""
+    test_binnode = BinNode()
+    return test_binnode
 
+@pytest.fixture()
 def binnode_1():
-    """Create an binnode with value 1"""
-    test_binnode() = BinNode(1)
+    """Create an binnode with value 1."""
+    test_binnode = BinNode(1)
+    return test_binnode
