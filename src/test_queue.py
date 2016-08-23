@@ -104,7 +104,7 @@ def test_dequeue_length(init_list, result):
     assert test_list.size() == max(0, len(init_list) - 1)
 
 
-def test_peak():
-    """Test the peak functionality."""
+def test_peek():
+    """Test the peek functionality."""
     test_list = Queue(['a', 'b', 'c'])
     assert test_list.peek() == 'a'
