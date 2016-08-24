@@ -2,6 +2,7 @@
 """Create a binary heap."""
 from __future__ import unicode_literals
 
+
 class BinNode(object):
     """Create a Node constructor to store data in a binary heap."""
 
@@ -23,7 +24,7 @@ class BinHeap(object):
     """Create a Binary Heap constructor."""
 
     def __init__(self, data_list=None):
-        """Create an instance of a Binary Heap."""
+        """Create an instance of a Binary Heap in max mode."""
         self.top = None
         self.bin_heap_list = []
         if data_list:
@@ -58,7 +59,7 @@ class BinHeap(object):
             self.top = new_node
         else:
             parent_position = ((idx + 1) // 2) - 1
-            is_child_a = bool(idx % 2)
+            is_child_a = idx % 2
             new_node = BinNode(value, self.bin_heap_list[parent_position])
             if (is_child_a):
                 new_node.parent.child_a = new_node
@@ -67,3 +68,28 @@ class BinHeap(object):
             self.bin_heap_list.append(new_node)
 
         return new_node
+
+    def pop(self):
+        last_node = self.bin_heap_list[-1].value
+        last_node.value, self.top.value = self.top.value, last_node.value
+        is_child_b = self._size % 2
+        if (is_child_b):
+            self.bin_heap_list[-1].parent.child_b = None
+        else:
+            self.bin_heap_list[-1].parent.child_a = None
+        self._size -= 1
+        return_value = self.bin_heap_list.pop().value
+        current_node = self.top
+        while True:
+            if (current_node.child_a >= current_node.child_b):
+                if child_a > current_node
+                    current_node.value, child_a.value = child_a.value, current_node.value
+                    current_node = child_a
+                else:
+                    break
+            else:
+                if child_b > current_node
+                    current_node.value, child_b.value = child_b.value, current_node.value
+                    current_node = child_b
+                else:
+                    break
