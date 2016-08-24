@@ -32,6 +32,14 @@ def test_binnode_passed_in_parent(binnode_1):
     assert test_node_2.parent is binnode_1
 
 
+def test_heapness():
+    from binheap import BinHeap
+    our_heap = BinHeap([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    for item in our_heap.bin_heap_list[1:]:
+        assert item.value <= item.parent.value
+
+
+
 
 
 
