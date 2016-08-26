@@ -49,15 +49,30 @@ SEARCH_TABLE = [
     (TYPE_TABLE, (1, 2, 3), True),
 ]
 
-# test for empty deque
 
-def test_empty_DeQue_size():
+def test_empty_deque_size():
     """Test to see if any empty queue has length zero."""
-    empty_DeQue = DeQue()
-    assert empty_queue.size() == 0
+    empty_deque = DeQue()
+    assert empty_deque.size() == 0
 
 
-# test for size of deque
+def test_size_xl():
+    """Test init and size on an xl deque."""
+    test_deque = DeQue(LONG_LIST)
+    assert test_deque.size() == 30000
+
+
+def test_peek():
+    """Test the peek functionality."""
+    test_list = DeQue(['a', 'b', 'c'])
+    assert test_list.peek() == 'c'
+
+
+def test_peekleft():
+    """Test the peekleft functionality."""
+    test_list = DeQue(['a', 'b', 'c'])
+    assert test_list.peek() == 'a'
+
 
 # test for append increase in size
 
@@ -75,6 +90,5 @@ def test_empty_DeQue_size():
 
 # test for popleft to return the correct value
 
-# test for peek to return the correct value
 
 # test for popleft to return the correct value
