@@ -107,3 +107,41 @@ __Methods__:
 * peekleft(): returns the next value that would be returned by popleft but
     leaves the value in the deque; returns None if the deque is empty.
 * size():  returns the count of items in the deque; returns 0 if empty.
+
+
+###Binary Heap###
+
+A Binary Heap in Python.
+
+A Binary Heap is a tree-tyoe data structure created by feeding in a list
+with two main properties.  The Shape Property: the tree is mostly complete 
+with only the deepest level left unfilled.  This level gets filled with new
+nodes from left to right.  The Heap Property has two nodes dictating
+relationships between parent and child nodes.  In a Max Heap each node
+is greater than or equal to its child nodes.  In a Min Heap each node is
+less than or equal to its chid nodes.  The Binary Heap provides efficient
+search, sorts in place, easy to retrieve top node items.  It is used for 
+quick minimum and maximum searches in a set of values.  It is also useful
+for Djikstra's algorithm and Priority Queues.
+
+__Methods__:
+* push(): puts a new value into the heap, maintaining the heap property.
+* pop(): removes the top value in the heap, also maintaining the heap
+    property and returns it.
+
+
+###Priority Queue###
+
+A Priority Queue in Python.
+
+A Priority Queue is similar to a Queue except that in additon to a value
+each item in th queue has a priority.  When an item is popped off a queue,
+it is the highest priority item that is removed.  This data structure is
+used for sink or swim based on priority, printer queue, event scheduler,
+traffic lights and emergency vehicles.
+
+__Methods__:
+* insert(item): inserts an item into the queue.
+* pop(): removes the most important item from the queue and returns it.
+* peek(): returns the most important item from the queue without removing
+    it.
